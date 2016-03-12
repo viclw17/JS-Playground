@@ -2,7 +2,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Simple Lighting Model</title>
+    <title>Shader Test</title>
 
 
 
@@ -21,13 +21,30 @@
 		uniform sampler2D norm;//The normal texture
 		uniform vec2 res;//Our screen dimensions
 		uniform vec4 light;//Our light source information
-		void main() {
-        vec2 pixel = gl_FragCoord.xy / res.xy;
+
+    void main() {
+
+        vec2 pixel = gl_FragCoord.xy / (res.xy); // uv texcoord
+        //debug
+        //vec4 debug = vec4(pixel/100.0,0.0,1.0);  // it has to be 100.0, or it gonna be all black
+        //vec4 debug = vec4(pixel,0.0,1.0);
+        //gl_FragColor = debug;
+
         vec4 color = texture2D(tex,pixel);
         vec4 normalVector = texture2D(norm,pixel);//We get the normal value of this pixel
-        vec2 lightPosition = light.xy / res.xy;//We normalize the light source
-        lightPosition.y = 1.0 - lightPosition.y;
 
+        //debug
+        //vec4 debug = vec4(normalVector.xyz,1.0);
+        //gl_FragColor = debug;
+
+        vec2 lightPosition = light.xy / res.xy;//We normalize the light source
+        lightPosition.y = 1.0 - lightPosition.y;  //
+
+        //debug
+        //vec4 debug = vec4(lightPosition,1.0,1.0);
+        //gl_FragColor = debug;
+
+        // per-pixel shading
         //We calculate the direction from the light to this pixel
         vec3 LightVector = vec3(lightPosition.x - pixel.x,lightPosition.y - pixel.y,light.z);
 
@@ -35,29 +52,36 @@
         //So we offset by that amount
         normalVector.x -= 0.5;
         normalVector.y -= 0.5;
+
         //We normalize our vectors to compute the direction
         vec3 NormalVector = normalize(normalVector.xyz);
         LightVector = normalize(LightVector);
 
+        //debug
+        //vec4 debug = vec4(LightVector,1.0);
+        //gl_FragColor = debug;
+
         // Compute the diffuse term for the Phong equation
-        float diffuse      = 1.5 * max(dot( NormalVector, LightVector ),0.0);
+        float diffuse = 1.5 * max(dot( NormalVector, LightVector ),0.0);
+
+        //debug
+        //vec4 debug = vec4(diffuse,0.0,0.0,1.0);
+        //gl_FragColor = debug;
 
         //Toggle light system on or off
         if(light.w == 0.0){
-           gl_FragColor = color;
+          gl_FragColor = color;
         } else {
           gl_FragColor = color * diffuse;
         }
 
 		 }
+
 	</script>
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js'></script>
 
-    <script src="js/index.js"></script>
+	<script src="js/index.js"></script>
 
-
-
-    
   </body>
 </html>
