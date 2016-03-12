@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Simple Lighting Model</title>
+    
+    
+    
+    
+        <link rel="stylesheet" href="css/style.css">
+
+    
+    
+    
+  </head>
+
+  <body>
+
+    <script id="fragShader" type="shader-code">
+		uniform sampler2D tex;//The main texture
+		uniform sampler2D norm;//The normal texture
+		uniform vec2 res;//Our screen dimensions
+		uniform vec4 light;//Our light source information
+		void main() {
+        vec2 pixel = gl_FragCoord.xy / res.xy;
+        vec4 color = texture2D(tex,pixel);
+        vec4 normalVector = texture2D(norm,pixel);//We get the normal value of this pixel
+        vec2 lightPosition = light.xy / res.xy;//We normalize the light source
+        lightPosition.y = 1.0 - lightPosition.y;
+
+        //We calculate the direction from the light to this pixel
+        vec3 LightVector = vec3(lightPosition.x - pixel.x,lightPosition.y - pixel.y,light.z);
+        
+        //By "up" direction of our normal map has the value (0.5,0.5,1.0) in terms of rgb
+        //So we offset by that amount
+        normalVector.x -= 0.5;
+        normalVector.y -= 0.5;
+        //We normalize our vectors to compute the direction
+        vec3 NormalVector = normalize(normalVector.xyz);
+        LightVector = normalize(LightVector);
+
+        // Compute the diffuse term for the Phong equation
+        float diffuse      = 1.5 * max(dot( NormalVector, LightVector ),0.0);
+  
+        //Toggle light system on or off
+        if(light.w == 0.0){
+           gl_FragColor = color;
+        } else {
+          gl_FragColor = color * diffuse;
+        }
+
+		 }
+	</script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js'></script>
+
+        <script src="js/index.js"></script>
+
+    
+    
+    
+  </body>
+</html>
