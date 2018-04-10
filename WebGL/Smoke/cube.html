@@ -4,7 +4,7 @@
 		<meta charset=utf-8>
 		<title>My first Three.js app</title>
 		<style>
-			body { margin: 0; }
+			body { margin: 0px; }
 			canvas { width: 100%; height: 100% }
 		</style>
 	</head>
@@ -13,24 +13,22 @@
 		<script>
 			// Our Javascript will go here.
 
-
-
 			// Creating the scene
 			var scene = new THREE.Scene();
-			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 ); // fov, aspect, near, far
+			// fov, aspect, near, far
+			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 			// Create the renderer and add into scene
 			var renderer = new THREE.WebGLRenderer();
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
 
-
-
-
 			// Draw stuff
 			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 			var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 			var cube = new THREE.Mesh( geometry, material );
-			scene.add( cube ); // add everything to the coordinates (0,0,0)
+
+			// add everything to the coordinates (0,0,0)
+			scene.add( cube );
 			// move camera
 			camera.position.z = 5;
 
