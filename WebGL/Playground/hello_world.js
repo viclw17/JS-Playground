@@ -37,3 +37,13 @@ function createProgram(gl, vertexShader, fragmentShader){
 }
 // call function
 var program = createProgram(gl, vertexShader, fragmentShader);
+// look up the location of the attribute for the program
+var positionAttributeLocation = gl.getAttribLocation(program, "a_position");
+var positionBuffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+var positions = [ // a javascript array
+  0.0, 0.0,
+  0.0, 0.5,
+  0.7, 0.0,
+];
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
