@@ -1,15 +1,43 @@
-<canvas id = "c"></canvas>
+<html>
+<head>
+    <style>
+      /* remove the border */
+      body {
+        border: 0;
+        background-color: white;
+      }
+      /* make the canvas the size of the viewport */
+      canvas {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+      }
+    </style>
+</head>
+<body>
+    <canvas id = "c"></canvas>
 
-<script id = "2d-vertex-shader" type="notjs">
-    attribute vec4 a_position;
-    void main(){
-        gl_position = a_position;
-    }
-</script>
+    <!-- vertex shader -->
+    <script id = "2d-vertex-shader" type="notjs">
+        attribute vec4 a_position;
+        // vec4 is a 4 float value FYI so:
+        // a_position = {x: 0, y: 0, z: 0, w: 0}
+        // Attributes default to 0, 0, 0, 1
+        void main(){
+            gl_Position = a_position;
+        }
+    </script>
+    <!-- fragment shader -->
+    <script id = "2d-fragment-shader" type="notjs">
+        precision mediump float;
+        void main(){
+            gl_FragColor = vec4(0, 0, 1, 1);
+        }
+    </script>
 
-<script id = "2d-fragment-shader" type="notjs">
-    precision mediump float;
-    void main(){
-        gl_FragColor = vec4(1, 0, 0.5, 1);
-    }
-</script>
+    <script src="hello_world.js"></script>
+
+    <!-- <script src="https://webglfundamentals.org/webgl/resources/webgl-utils.js"></script> -->
+    <!-- <script src="https://webglfundamentals.org/webgl/resources/webgl-lessons-helper.js"></script> -->
+</body>
+</html>
