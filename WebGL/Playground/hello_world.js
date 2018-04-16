@@ -24,7 +24,7 @@ function createShader(gl, type, source){
     if(success){
         return shader;
     }
-    console.log(gl.getShaderInfoLog(shader));
+    // console.log(gl.getShaderInfoLog(shader));
     gl.deleteShader(shader);
 }
 // function to link 2 shaders into a GLSL program
@@ -37,7 +37,7 @@ function createProgram(gl, vertexShader, fragmentShader){
     if(success){
         return program;
     }
-    console.log(gl.getProgramInfoLog(program));
+    // console.log(gl.getProgramInfoLog(program));
     gl.deleteProgram(program);
 }
 // main
@@ -119,12 +119,3 @@ function main(){
 }
 
 main();
-
-/*
-Converting from clip space to screen space if the canvas size happened to be 400x300:
-clip space      screen space
-   0, 0       ->   200, 150
-   0, 0.5     ->   200, 225
- 0.7, 0       ->   340, 150
-WebGL will now render that triangle. For every pixel it is about to draw WebGL will call our fragment shader. Our fragment shader just sets gl_FragColor to 1, 0, 0.5, 1. Since the Canvas is an 8bit per channel canvas that means WebGL is going to write the values [255, 0, 127, 255] into the canvas.
-*/
