@@ -1,0 +1,11 @@
+/* SVG styling */
+svg {
+	width: 840px;
+	height: 600px;
+	font-family: helvetica, sans-serif;
+  background-color: rgb(0, 0, 0);
+}
+
+path, line {
+	stroke: #FFF;//#777;
+}
