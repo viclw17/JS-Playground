@@ -6,7 +6,7 @@ var branches = [];
 var seed = {i: 0, x: 420, y: 600, a: 0, l: 130, d:0}; // a = angle, l = length, d = depth
 var da = 0.5; // Angle delta
 var dl = 0.8; // Length delta (factor)
-var ar = 0.7; // Randomness
+var ar = 0.8; // Randomness 0.7
 var maxDepth = 10;
 
 
@@ -52,11 +52,11 @@ function regenerate(initialise) {
 	initialise ? create() : update();
 }
 
-function myFunction() {
-    // alert('Hello');
-    d3.selectAll('.regenerate').call(regenerate);
+function callByInterval() {
+	  d3.selectAll('.regenerate')
+		.call(regenerate);
     update();
-    console.log("refresh");
+    console.log("refreshed");
 }
 
 function endPt(b) {
@@ -66,20 +66,19 @@ function endPt(b) {
 	return {x: x, y: y};
 }
 
-
 // D3 functions
 function x1(d) {return d.x;}
 function y1(d) {return d.y;}
 function x2(d) {return endPt(d).x;}
 function y2(d) {return endPt(d).y;}
-function highlightParents(d) {
-	var colour = d3.event.type === 'mouseover' ? 'green' : '#777';
-	var depth = d.d;
-	for(var i = 0; i <= depth; i++) {
-		d3.select('#id-'+parseInt(d.i)).style('stroke', colour);
-		d = branches[d.parent];
-	}
-}
+// function highlightParents(d) {
+// 	var colour = d3.event.type === 'mouseover' ? 'green' : '#777';
+// 	var depth = d.d;
+// 	for(var i = 0; i <= depth; i++) {
+// 		d3.select('#id-'+parseInt(d.i)).style('stroke', colour);
+// 		d = branches[d.parent];
+// 	}
+// }
 
 function create() {
 	d3.select('svg')
@@ -93,8 +92,8 @@ function create() {
 		.attr('y2', y2)
 		.style('stroke-width', function(d) {return parseInt(maxDepth + 1 - d.d) + 'px';})
 		.attr('id', function(d) {return 'id-'+d.i;})
-		.on('mouseover', highlightParents)
-		.on('mouseout', highlightParents);
+		// .on('mouseover', highlightParents)
+		// .on('mouseout', highlightParents);
 }
 
 function update() {
@@ -110,7 +109,6 @@ function update() {
 
 // d3.selectAll('.regenerate')
 // 	.on('click', regenerate);
-
 // regenerate(true);
 
-window.setInterval(myFunction, 1000);
+window.setInterval(callByInterval, 1000);
