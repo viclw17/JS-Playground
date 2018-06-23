@@ -1,1 +1,13 @@
 # JS-Playground
+- [JS Beautifier](http://jsbeautifier.org/)
+- [How to Write a Smoke Shader](http://gamedevelopment.tutsplus.com/tutorials/how-to-write-a-smoke-shader--cms-25587)
+- [A Beginner's Guide to Coding Graphics Shaders](http://gamedevelopment.tutsplus.com/tutorials/a-beginners-guide-to-coding-graphics-shaders--cms-23313)
+- [Quick Tip: How to Render to a Texture in Three.js](http://gamedevelopment.tutsplus.com/tutorials/quick-tip-how-to-render-to-a-texture-in-threejs--cms-25686)
+- [Let’s Build a 3D Graphics Software Engine](http://gamedevelopment.tutsplus.com/series/lets-build-a-3d-graphics-software-engine--gamedev-12718)
+- [Beginner's Guide to OOP](http://gamedevelopment.tutsplus.com/series/beginners-guide-to-oop--gamedev-12703)
+- [Forward Rendering vs. Deferred Rendering](http://gamedevelopment.tutsplus.com/articles/forward-rendering-vs-deferred-rendering--gamedev-12342)
+- [The End of Fixed-Function Rendering Pipelines (and How to Move On)](http://gamedevelopment.tutsplus.com/articles/the-end-of-fixed-function-rendering-pipelines-and-how-to-move-on--cms-21469)
+- [Gamma Correction and Why It Matters](http://gamedevelopment.tutsplus.com/articles/gamma-correction-and-why-it-matters--gamedev-14466)
+- [Quick Tip: Use Quadtrees to Detect Likely Collisions in 2D Space](http://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374)
+- [Javascript Quadtree Implementation](http://www.mikechambers.com/blog/2011/03/21/javascript-quadtree-implementation/)
+- [Creating Life: Conway's Game of Life](http://gamedevelopment.tutsplus.com/tutorials/creating-life-conways-game-of-life--gamedev-558)
